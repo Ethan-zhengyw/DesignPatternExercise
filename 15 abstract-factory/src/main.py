@@ -1,6 +1,7 @@
 from model.base.user import User
 from model.base.department import Department
 from factory.db_factory import DBFactory
+from factory.db import DB
 from factory.mysql_factory import MySQLFactory
 from factory.mongodb_factory import MongoDBFactory
 
@@ -20,6 +21,15 @@ def main():
     db_factory = MongoDBFactory()
     user_session = db_factory.get_user_session()
     department_session = db_factory.get_department_session()
+    user_session.add()
+    user_session.get()
+    department_session.add()
+    department_session.get()
+
+    # Using reflection and configuration file
+    db = DB()
+    user_session = db.get_user_session()
+    department_session = db.get_department_session()
     user_session.add()
     user_session.get()
     department_session.add()
